@@ -22,6 +22,7 @@ class AParser:
         headers = {'Content-Type': 'application/json; charset=utf-8'}
 
         async with self._session.post(self.uri, data=body, headers=headers) as response:
+            assert response.status in (200, 201), response.status
             data = await response.json()
         return data
 
